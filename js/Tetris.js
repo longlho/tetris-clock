@@ -37,7 +37,7 @@
     time: 0,
     queue: function (fn) {
       Tetris.time++;
-      setTimeout(fn, 50 * Tetris.time);
+      setTimeout(fn, 25 * Tetris.time);
     }
   };
 
@@ -163,7 +163,7 @@
 
   Tetris.Z = Shape.extend({
     init: function (opts) {
-      this._super([[0, 0], [1, 0], [1, 1], [1, 2]], opts);
+      this._super([[0, 0], [1, 0], [1, 1], [2, 1]], opts);
     }
   });
 
