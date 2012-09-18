@@ -5,20 +5,30 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
   <script src="http://underscorejs.org/underscore-min.js"></script>
   <script src="js/Class.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/Tetris.js"></script>
+  <script src="js/Clock.js"></script>
   <script type='text/javascript'>
   $(function () {
     Tetris.context = $('#canvas')[0].getContext('2d');
-    var base = 10;
-    var piece = new Tetris.L({ x: base, y: 10});
-    setInterval(function () {
-      base += 10;
-      piece.rotate();
-    }, 1000);
+    
+    /*
+    new Clock[1]({ x: 10, y: 10 });
+    
+    new Clock[2]({ x: 50, y: 10 });
+
+    new Clock[3]({ x: 130, y: 10 });
+    
+    new Clock[4]({ x: 210, y: 10 });
+
+    new Clock[5]({ x: 50, y: 10 });
+    */
+
+    new Clock[6]({ x: 50, y: 10 });
   });
+
   </script>
 </head>
 <body>
-  <canvas id='canvas' width='400' height='400'></canvas>
+  <canvas id='canvas' width='700' height='700'></canvas>
 </body>
 </html>
