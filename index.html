@@ -10,13 +10,8 @@
   <script type='text/javascript'>
   $(function () {
     Tetris.context = $('#canvas')[0].getContext('2d');
-    /*
-    for (var i = 0; i < 10; i++) {
-      new Clock[i]({ x: 80 * i, y: 10 });
-    }
-    */
-    new Clock[1]({ x: 10, y: 10 });
-    new Clock.DOT(({ x: 50, y: 10 }));
+    Clock.refresh();
+
   });
 
   </script>

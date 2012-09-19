@@ -3,6 +3,10 @@
 
 	if (!root.Tetris) throw new Error('Need Tetris.js');
 
+	var pad = function (num) {
+		return (num < 10 ? '0' : '') + num; 
+	}
+
 	var Clock = root.Clock = [];
 
 	Clock[1] = function (opts) {
@@ -138,5 +142,28 @@
 	Clock.DOT = function (opts) {
 		new Tetris.O(_.clone(opts)).move(0, 12);
 		new Tetris.O(_.clone(opts)).move(0, 8);
+	}
+
+	Clock.refresh = function () {
+		var date = new Date()
+			, base = 10
+			, hours = pad(date.getHours())
+			,	mins = pad(date.getMinutes())
+			,	i = 0;
+
+		if (!Clock.current) {
+			Clock.current = hours + mins;
+		}
+
+		for (; i < hours.length; i++) {
+			new Clock[parseInt(hours[i], 10)]({ x: base + 60*i, y: 10 });
+		}
+
+		base += 140;
+		new Clock.DOT({ x: base + 20, y: 10 });
+
+		for (; i < mins.length + 2; i++) {
+			new Clock[parseInt(mins[i - 2], 10)]({ x: base + 80*(i-1), y: 10 });
+		}
 	}
 })();
