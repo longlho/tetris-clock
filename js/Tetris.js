@@ -7,12 +7,12 @@
     context: {},
     LENGTH: 10,
     GAP: 1,
-    populateSquare: function (opts) {
+    populateSquare: function (options) {
       var sqArr = []
         , opts = _.extend({
             length: Tetris.LENGTH,
             color: 'black'
-          }, opts)
+          }, options)
         , coords = opts.coords;
       for (var i = 0; i < coords.length; i++) {
         sqArr.push(new Square(_.extend({}, opts, {
@@ -34,10 +34,18 @@
       if (_.isEqual(coord, [2, 1])) return [1, 0];
       if (_.isEqual(coord, [2, 2])) return [2, 0];
     },
+    stack: 0,
     time: 0,
     queue: function (fn) {
+      fn && Tetris.stack++;
       Tetris.time++;
-      setTimeout(fn, 25 * Tetris.time);
+      setTimeout(function () {
+        fn();
+        Tetris.stack--;
+        if (!Tetris.stack) {
+          Tetris.time = 0;
+        }
+      }, 25 * Tetris.time);
     }
   };
 
@@ -52,7 +60,7 @@
 
   var Shape = Class.extend({
     init: function (coords, opts) {
-      this.opts = opts = _.extend({
+      this.opts = _.extend({
         coords: coords
       }, opts);
       Tetris.queue(_.bind(function () {
@@ -125,7 +133,7 @@
         coords[i][0] = coords[i][1];
         coords[i][1] = tmp;
       }
-      Tetris.queue(this.draw);
+      Tetris.queue(_.bind(this.draw, this));
       return this;
     }
   });

@@ -11,6 +11,8 @@
   $(function () {
     Tetris.context = $('#canvas')[0].getContext('2d');
     Clock.refresh();
+    //Refresh every min
+    setInterval(Clock.refresh, 60 * 1000);
 
   });
 
