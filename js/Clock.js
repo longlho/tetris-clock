@@ -20,11 +20,11 @@
 	Clock[1] = Clock.Base.extend({
 		init: function (opts) {
 			this.pieces = [
-				new Tetris.L(_.clone(opts)).move(0, 13),
-				new Tetris.L(_.clone(opts)).move(0, 7).rotate(1).move(-1, 5),
-				new Tetris.O(_.clone(opts)).move(0, 10),
-				new Tetris.L(_.clone(opts)).move(0, 7),
-				new Tetris.L(_.clone(opts)).move(0, 4).rotate(1).move(-1, 2)
+				new Tetris.L(_.clone(opts)).move(2, 13),
+				new Tetris.L(_.clone(opts)).move(0, 7).rotate(1).move(1, 5),
+				new Tetris.O(_.clone(opts)).move(2, 10),
+				new Tetris.L(_.clone(opts)).move(2, 7),
+				new Tetris.L(_.clone(opts)).move(0, 4).rotate(1).move(1, 2)
 			]
 		}
 	});
@@ -189,8 +189,8 @@
 	Clock.D = Clock.Base.extend({
 		init: function (opts) {
 			this.pieces = [
-				new Tetris.O(_.clone(opts)).move(0, 12),
-				new Tetris.O(_.clone(opts)).move(0, 8)
+				new Tetris.O(_.clone(opts)).move(2, 12),
+				new Tetris.O(_.clone(opts)).move(2, 8)
 			];
 		}
 	});
@@ -202,7 +202,7 @@
 
 	Clock.refresh = function (string) {
 		var date = new Date()
-			, base = 10
+			, base = 5
 			, hours = pad(date.getHours())
 			,	mins = pad(date.getMinutes())
 			, str = string || (hours + 'D' + mins)
@@ -211,7 +211,7 @@
 		for (; i < str.length; i++) {
 			if (str[i] === Clock.current.str[i]) continue;
 			Clock.current.arr[i] && Clock.current.arr[i].clear();
-			Clock.current.arr[i] = new Clock[str[i]]({ x: base + 80*i, y: 10 });
+			Clock.current.arr[i] = new Clock[str[i]]({ x: base + 80*i, y: 0 });
 		}
 
 		Clock.current.str = str;

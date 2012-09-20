@@ -11,7 +11,7 @@
       var sqArr = []
         , opts = _.extend({
             length: Tetris.LENGTH,
-            color: 'black'
+            color: 'white'
           }, options)
         , coords = opts.coords;
       for (var i = 0; i < coords.length; i++) {
