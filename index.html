@@ -5,37 +5,34 @@
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
-  
+
 </head>
 <body>
   <canvas id='canvas' width='400' height='200'></canvas>
   <h1 id='date'></h1>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-  <script src="http://underscorejs.org/underscore-min.js"></script>
-  <script src="js/Class.js"></script>
+  <script src="js/utils.js"></script>
   <script src="js/Tetris.js"></script>
+  <script src="js/Shape.js"></script>
   <script src="js/Clock.js"></script>
   <script type='text/javascript'>
-  $(function () {
-    Tetris.context = $('#canvas')[0].getContext('2d');
-    var now = new Date()
-      , endOfMinute = new Date();
+    Tetris.context = document.getElementById('canvas').getContext('2d');
+    var now = new Date();
+    var endOfMinute = new Date();
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
     Clock.refresh();
     endOfMinute.setMinutes(now.getMinutes() + 1);
     endOfMinute.setSeconds(0);
     //Wait till the end of the minute
-    setTimeout(function () {
-      Clock.refresh();
-      //Refresh every min
-      setInterval(Clock.refresh, 60 * 1000);
-    }, endOfMinute - now);
+    // setTimeout(function () {
+    //   Clock.refresh();
+    //   //Refresh every min
+    //   setInterval(Clock.refresh, 60 * 1000);
+    // }, endOfMinute - now);
 
-    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-      , DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-
-    $('#date').text([DAYS[now.getDay()], now.getDate(), MONTHS[now.getMonth()], now.getFullYear()].join(' '));
-  });
+    document.getElementById('date').textContent = [DAYS[now.getDay()], now.getDate(), MONTHS[now.getMonth()], now.getFullYear()].join(' ');
 
   </script>
 </body>
