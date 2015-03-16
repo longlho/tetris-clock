@@ -26,11 +26,11 @@
     endOfMinute.setMinutes(now.getMinutes() + 1);
     endOfMinute.setSeconds(0);
     //Wait till the end of the minute
-    // setTimeout(function () {
-    //   Clock.refresh();
-    //   //Refresh every min
-    //   setInterval(Clock.refresh, 60 * 1000);
-    // }, endOfMinute - now);
+    setTimeout(function () {
+      Clock.refresh();
+      //Refresh every min
+      setInterval(Clock.refresh, 60 * 1000);
+    }, endOfMinute - now);
 
     document.getElementById('date').textContent = [DAYS[now.getDay()], now.getDate(), MONTHS[now.getMonth()], now.getFullYear()].join(' ');
 
